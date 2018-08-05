@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/IORequestable.svg?style=flat)](https://cocoapods.org/pods/IORequestable)
 [![Platform](https://img.shields.io/cocoapods/p/IORequestable.svg?style=flat)](https://cocoapods.org/pods/IORequestable)
 
+Extremely simple declaration and execution for web API's with IORequestable.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
