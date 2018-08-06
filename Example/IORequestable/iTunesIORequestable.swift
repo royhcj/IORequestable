@@ -1,30 +1,31 @@
 //
-//  GithubIORequestable.swift
+//  iTunesIORequestable.swift
 //  IORequestable_Example
 //
-//  Created by roy on 8/5/18.
+//  Created by roy on 8/6/18.
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
+
+import UIKit
 
 import Foundation
 import IORequestable
 import Moya
 
-
-protocol GithubIORequestable: MoyaIORequestable {
+protocol iTunesIORequestable: MoyaIORequestable {
   var sampleDataFile: String? { get }
 }
 
-extension GithubIORequestable {
+extension iTunesIORequestable {
   
   var baseURL: URL {
-    return URL(string: "https://api.github.com")!
+    return URL(string: "https://itunes.apple.com")!
   }
   
   var sampleData: Data {
     guard let sampleDataFile = sampleDataFile else {
-    print("Error: sampleDataFile unspecified")
-    return Data()
+      print("Error: sampleDataFile unspecified")
+      return Data()
     }
     let path = Bundle.main.path(forResource: sampleDataFile, ofType: "json")
     return try! Data(contentsOf: URL(fileURLWithPath: path!))

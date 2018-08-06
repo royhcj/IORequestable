@@ -17,14 +17,17 @@ class ViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    GithubAPI.GetSearchRecords {
-        $0.init(user: "royhcj")
-      }.execute { result in
+    iTunesAPI.SearchItems { $0.init(
+        term: "Swift", limit: 10, lang: "en_us"
+      ) }.execute { result in
         switch result {
-          case .success(let data):
-            print(type(of: data))
-          case .failure(let error):
-            print(error)
+        case .success(let output):
+          print("Number of items found: \(output.resultCount)")
+          output.results?.forEach { item in
+            print("\(item.kind): \(item.trackName ?? "") (by \(item.artistName ?? "?"))")
+          }
+        case .failure(let error):
+          print(error)
         }
       }
   }

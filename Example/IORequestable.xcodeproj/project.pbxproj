@@ -15,6 +15,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8234E9CB29947EF157E38BE0 /* Pods_IORequestable_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DB3D0FEA13DCA94677C3507 /* Pods_IORequestable_Tests.framework */; };
+		B037156D2118788B00EB73BA /* iTunesIORequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037156C2118788B00EB73BA /* iTunesIORequestable.swift */; };
+		B037156F2118795C00EB73BA /* iTunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037156E2118795C00EB73BA /* iTunesAPI.swift */; };
 		B062923F2116276100AA6516 /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062923E2116276100AA6516 /* GithubAPI.swift */; };
 		B06292412116278D00AA6516 /* GithubIORequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06292402116278D00AA6516 /* GithubIORequestable.swift */; };
 /* End PBXBuildFile section */
@@ -46,6 +48,8 @@
 		8DB3D0FEA13DCA94677C3507 /* Pods_IORequestable_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IORequestable_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91DFFF4627002CC318B833C8 /* Pods-IORequestable_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IORequestable_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IORequestable_Tests/Pods-IORequestable_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ACE8DDA7BC719A7A7F2A0C43 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		B037156C2118788B00EB73BA /* iTunesIORequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesIORequestable.swift; sourceTree = "<group>"; };
+		B037156E2118795C00EB73BA /* iTunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesAPI.swift; sourceTree = "<group>"; };
 		B062923E2116276100AA6516 /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
 		B06292402116278D00AA6516 /* GithubIORequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubIORequestable.swift; sourceTree = "<group>"; };
 		C09FC5A809357F6212AFC229 /* Pods-IORequestable_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IORequestable_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-IORequestable_Example/Pods-IORequestable_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,9 +148,19 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		B037156B2118786100EB73BA /* iTunesAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B037156C2118788B00EB73BA /* iTunesIORequestable.swift */,
+				B037156E2118795C00EB73BA /* iTunesAPI.swift */,
+			);
+			name = iTunesAPI;
+			sourceTree = "<group>";
+		};
 		B062923C2116256200AA6516 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B037156B2118786100EB73BA /* iTunesAPI */,
 				B062923D2116257100AA6516 /* GithubAPI */,
 			);
 			name = Services;
@@ -411,7 +425,9 @@
 			files = (
 				B06292412116278D00AA6516 /* GithubIORequestable.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				B037156D2118788B00EB73BA /* iTunesIORequestable.swift in Sources */,
 				B062923F2116276100AA6516 /* GithubAPI.swift in Sources */,
+				B037156F2118795C00EB73BA /* iTunesAPI.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
