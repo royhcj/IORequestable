@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img height="160" src="web/logo_github.png" />
+</p>
+
 # IORequestable
 
 [![CI Status](https://img.shields.io/travis/royhcj/IORequestable.svg?style=flat)](https://travis-ci.org/royhcj/IORequestable)
