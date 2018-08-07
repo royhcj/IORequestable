@@ -14,32 +14,41 @@ A **simple** way to define and execute your web API with IORequestable.
 
 ## What is it?
 
-IORequestable provides an easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
+IORequestable provides a clean and easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
 
-API = Codable Input + Decodable Output + URL/HTTPMethod/etc
+API = Codable Input + Decodable Output + URL and other options
 
 ## Usage
 
-### Define an API
+### Specify a base URL
 
 ```swift
 import IORequestable
 import Moya
 
+protocol SomeIORequestable: MoyaIORequestable {}
+extension SomeIORequestable {
+  var baseURL: URL {
+    return URL(string: "https://example.com")!
+  }
+}
+```
+
+### Define an API
+
+```swift
 struct GetUserInfo: SomeIORequestable {
 
-  var path: String { return "/user" }
-  var method: Moya.Method { return .get }
-  var input: Input?
+  var spec = Spec(.get, "/user",
+                  inputEncoding: .urlParameter)
 
   struct Input: Encodable {
-    let accessToken: String
     let userID: Int
+    let language: String?
   }
 
   struct Output: Decodable {
     let name: String
-    let gender: String?
     let height: Double?
     let weight: Double?
   }
@@ -47,10 +56,12 @@ struct GetUserInfo: SomeIORequestable {
 }
 ```
 
+That's it! You have just created an API. Let's give it a try.
+
 ### Execute an API
 
 ```swift
-  GetUserInfo { $0.init(accessToken: "12345", userID: 5) }
+  GetUserInfo { $0.init(userID: 5, language: "en_us") }
     .execute() { result in
       switch result {
       case .success(let output):
