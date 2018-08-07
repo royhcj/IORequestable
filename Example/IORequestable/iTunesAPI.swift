@@ -14,7 +14,8 @@ class iTunesAPI {
   
   struct SearchItems: iTunesIORequestable {
 
-    var spec = Spec(.get, "/search")
+    var spec = Spec(.get, "/search",
+                    inputEncoding: InputEncoding.urlParameter)
     
     struct Input: Encodable {
       var term: String

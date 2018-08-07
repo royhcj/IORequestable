@@ -10,7 +10,7 @@ public protocol IORequestablePlaceholdedPath {
   associatedtype Input: Encodable
   var input: Input? { get }
   var path: String { get }
-  var placeholdedPath: String { get } // For example "/dish/{dishID}/reviews", where dishID exists in Input.
+  var placeholdedPath: String { get } // For example "/user/{userID}/comments", where userID exists in Input.
 }
 
 extension IORequestablePlaceholdedPath {
@@ -38,13 +38,12 @@ extension IORequestablePlaceholdedPath {
         path.replaceSubrange($0.replaceRange, with: subPath)
       }
     }
-    print(path)
     return path
   }
   
-  static func curlyBracketRanges(of text: String)
-                    -> [(keyRange: Range<String.Index>,
-                         replaceRange: Range<String.Index>)] {
+  private static func curlyBracketRanges(of text: String)
+                      -> [(keyRange: Range<String.Index>,
+                           replaceRange: Range<String.Index>)] {
       var ranges: [(keyRange: Range<String.Index>,
                     replaceRange: Range<String.Index>)] = []
       
