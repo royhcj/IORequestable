@@ -12,7 +12,7 @@ import Result
 public protocol IORequestable {
   associatedtype Input: Encodable
   associatedtype Output: Decodable
-  associatedtype ErrorT: Error
+  associatedtype ErrorT: Swift.Error
   var input: Input? { get set }
   
   init()
@@ -32,8 +32,6 @@ extension IORequestable {
     self.init()
     self.input = input(Input.self)
   }
-}
-
-extension String: Error {
-    
+  
+  public var sampleData: Data { return Data() }
 }

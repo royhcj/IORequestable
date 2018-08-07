@@ -67,11 +67,11 @@ extension MoyaIORequestable {
     Self.provider.request(self) { (result) in
       switch result {
       case .success(let response):
-        let output = try? JSONDecoder().decode(Output.self, from: response.data)
-        if let output = output {
+        do {
+          let output = try JSONDecoder().decode(Output.self, from: response.data)
           completion(Result<Output, MoyaError>.init(value: output))
-        } else {
-          completion(Result<Output, MoyaError>.init(error: MoyaError.encodableMapping("Output encoding error")))
+        } catch(let error) {
+          completion(Result<Output, MoyaError>.init(error: MoyaError.encodableMapping(error)))
         }
       case .failure(let error):
         completion(Result<Output, MoyaError>.init(error: error))

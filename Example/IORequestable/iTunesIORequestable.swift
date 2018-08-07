@@ -12,7 +12,8 @@ import Foundation
 import IORequestable
 import Moya
 
-protocol iTunesIORequestable: MoyaIORequestable {
+protocol iTunesIORequestable: MoyaIORequestable,
+                              RxIORequestable {
   var sampleDataFile: String? { get }
 }
 

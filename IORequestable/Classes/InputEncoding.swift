@@ -15,7 +15,7 @@ public enum InputEncoding {
   /// Encode input to HTTP body in JSON format
   case jsonBody
   
-  /// Encode input to URL as url-encoded parameters
+  /// Encode input to URL as url-encoded query string
   case urlParameter
   
   // TODO: Support more encodings.

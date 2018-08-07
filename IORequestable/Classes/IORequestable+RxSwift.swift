@@ -9,15 +9,9 @@ import Foundation
 import Result
 import RxSwift
 import RxCocoa
+import Moya
 
-protocol RxIORequestable {
-  associatedtype Base
-  associatedtype BaseOutput
-  func execute() -> Observable<BaseOutput?>
-}
-
-extension Reactive: RxIORequestable where Base: IORequestable {
-  typealias BaseOutput = Base.Output
+extension Reactive where Base: IORequestable {
 
   func execute() -> Observable<Base.Output?> {
     return Observable<Base.Output?>.create { (observer) -> Disposable in
@@ -33,5 +27,26 @@ extension Reactive: RxIORequestable where Base: IORequestable {
     }
     .catchErrorJustReturn(nil)
   }
+  
+}
+
+public protocol RxIORequestable: IORequestable {
+  func rx_execute() -> Observable<Result<Output, ErrorT>>
+}
+
+extension RxIORequestable {
+  public func rx_execute() -> Observable<Result<Output, ErrorT>> {
+    return Observable<Result<Output, ErrorT>>.create { (observer) -> Disposable in
+      self.execute { result in
+        observer.onNext(result)
+      }
+      return Disposables.create()
+    }
+    .catchError({ (error) -> Observable<Result<Output, ErrorT>> in
+      let result = Result<Output, ErrorT>.init(error: error as! ErrorT)
+      return Observable<Result<Output, ErrorT>>.just(result)
+    })
+  }
+  
   
 }
