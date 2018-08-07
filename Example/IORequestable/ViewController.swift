@@ -10,25 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
   
+  @IBOutlet weak var textView: UITextView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    textView.text = "Tap on an API to call."
   }
-
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
+  
+  @IBAction func clickedITunesSearchItems(_ sender: Any) {
     
     iTunesAPI.SearchItems { $0.init(
         term: "Swift", limit: 10, lang: "en_us"
       ) }.execute { result in
+        var resultText = ""
+        
         switch result {
         case .success(let output):
-          print("Number of items found: \(output.resultCount)")
+          resultText += "Number of items found: \(output.resultCount)\n"
           output.results?.forEach { item in
-            print("\(item.kind): \(item.trackName ?? "") (by \(item.artistName ?? "?"))")
+            resultText += "\(item.kind): \(item.trackName ?? "") (by \(item.artistName ?? "?"))\n"
           }
         case .failure(let error):
-          print(error)
+          resultText = error.localizedDescription
         }
+        
+        self.textView.text = resultText
       }
   }
 }
