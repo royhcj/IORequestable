@@ -11,10 +11,29 @@ import Result
 import SwiftyJSON
 
 public protocol MoyaIORequestable: IORequestable, MoyaProvidable {
+  typealias Spec = MoyaSpec
   
+  var spec: Spec { get set }
 }
 
 extension MoyaIORequestable {
+  
+  public var path: String {
+    return spec.path
+  }
+  
+  public var method: Moya.Method {
+    return spec.method
+  }
+  
+  public var input: Input? {
+    get {
+      return spec.input as? Input
+    }
+    set {
+      spec.input = newValue
+    }
+  }
   
   public var task: Task {
     let data = try! JSONEncoder().encode(input)
@@ -53,3 +72,15 @@ public protocol MoyaProvidable: TargetType {
     static var provider: MoyaProvider<Self> { get }
 }
 
+
+public struct MoyaSpec {
+  public var method: Moya.Method
+  public var path: String
+  
+  public var input: Any?
+  
+  public init(_ method: Moya.Method, _ path: String) {
+    self.method = method
+    self.path = path
+  }
+}

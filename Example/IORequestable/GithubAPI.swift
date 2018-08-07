@@ -11,9 +11,8 @@ import Moya
 
 struct GithubAPI {
   struct GetSearchRecords: GithubIORequestable {
-    var path: String { return "/users/\(input!.user)/repos" }
-    var method: Moya.Method { return .get }
-    var input: Input?
+    
+    var spec: Spec = Spec(.get, "/users/{user}/repos")
     
     struct Input: Encodable {
       var user: String

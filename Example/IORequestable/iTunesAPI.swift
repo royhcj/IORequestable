@@ -13,9 +13,8 @@ import Moya
 class iTunesAPI {
   
   struct SearchItems: iTunesIORequestable {
-    var path: String { return "/search" }
-    var method: Moya.Method { return .get }
-    var input: Input?
+
+    var spec = Spec(.get, "/search")
     
     struct Input: Encodable {
       var term: String
