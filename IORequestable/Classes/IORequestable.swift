@@ -20,6 +20,7 @@ public protocol IORequestable {
   init(input: ((Input.Type) -> Input))
   
   func execute(completion: @escaping ((Result<Output, ErrorT>) -> Void))
+  func executeJust(completion: @escaping (Output?) -> Void)
 }
 
 extension IORequestable {

@@ -13,7 +13,20 @@ import Moya
 
 extension Reactive where Base: IORequestable {
 
-  func execute() -> Observable<Base.Output?> {
+  func ior_execute() -> Observable<Result<Base.Output, Base.ErrorT>> {
+    return Observable<Result<Base.Output, Base.ErrorT>>.create { (observer) -> Disposable in
+      self.base.execute { result in
+        observer.onNext(result)
+      }
+      return Disposables.create()
+    }
+    .catchError({ error -> Observable<Result<Base.Output, Base.ErrorT>> in
+      let result = Result<Base.Output, Base.ErrorT>.init(error: error as! Base.ErrorT)
+      return Observable.just(result)
+    })
+  }
+  
+  func ior_executeJust() -> Observable<Base.Output?> {
     return Observable<Base.Output?>.create { (observer) -> Disposable in
       self.base.execute { result in
         switch result {
@@ -32,6 +45,7 @@ extension Reactive where Base: IORequestable {
 
 public protocol RxIORequestable: IORequestable {
   func rx_execute() -> Observable<Result<Output, ErrorT>>
+  func rx_executeJust() -> Observable<Output?>
 }
 
 extension RxIORequestable {
@@ -48,5 +62,13 @@ extension RxIORequestable {
     })
   }
   
+  public func rx_executeJust() -> Observable<Output?> {
+    return rx_execute().map { result -> Output? in
+      if case .success(let output) = result {
+        return output
+      }
+      return nil
+    }
+  }
   
 }

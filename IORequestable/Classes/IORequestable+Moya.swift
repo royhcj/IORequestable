@@ -47,7 +47,8 @@ extension MoyaIORequestable {
     case .urlParameter:
       do {
         let data = try JSONEncoder().encode(input)
-        if let parameters = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] {
+        if let parameters = try JSONSerialization.jsonObject(with: data,
+                                    options: .allowFragments) as? [String: Any] {
           return Task.requestParameters(parameters: parameters,
                                         encoding: URLEncoding.default)
         }
@@ -75,6 +76,17 @@ extension MoyaIORequestable {
         }
       case .failure(let error):
         completion(Result<Output, MoyaError>.init(error: error))
+      }
+    }
+  }
+  
+  public func executeJust(completion: @escaping (Output?) -> Void) {
+    execute { result in
+      switch result {
+      case .success(let output):
+        completion(output)
+      case .failure(_):
+        completion(nil)
       }
     }
   }
