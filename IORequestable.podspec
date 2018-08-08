@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'IORequestable'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of IORequestable.'
+  s.summary          = 'A simple way to define and execute your web API with IORequestable in Swift.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+  ORequestable provides a clean and easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
                        DESC
 
   s.homepage         = 'https://github.com/royhcj/IORequestable'
@@ -28,7 +28,8 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/royhcj/IORequestable.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
+  s.swift_version = '4.0'
 
   s.source_files = 'IORequestable/Classes/**/*'
   
