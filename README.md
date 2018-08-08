@@ -10,17 +10,17 @@
 [![License](https://img.shields.io/cocoapods/l/IORequestable.svg?style=flat)](https://cocoapods.org/pods/IORequestable)
 [![Platform](https://img.shields.io/cocoapods/p/IORequestable.svg?style=flat)](https://cocoapods.org/pods/IORequestable)
 
-A **simple** way to define and execute your web API with IORequestable.
+A **simple** way to define and execute your web API with IORequestable in Swift.
 
 ## What is it?
 
 IORequestable provides a clean and easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
 
-API = Codable Input + Decodable Output + URL and other options
+API = Endable Input + Decodable Output + URL and other options
 
 ## Usage
 
-### Specify a base URL
+### Specify a shared base URL
 
 ```swift
 import IORequestable
@@ -56,7 +56,7 @@ struct GetUserInfo: SomeIORequestable {
 }
 ```
 
-That's it! You have just created an API. Let's give it a try.
+That's it! You have just created an executable API. Let's run it and give it a try.
 
 ### Execute an API
 

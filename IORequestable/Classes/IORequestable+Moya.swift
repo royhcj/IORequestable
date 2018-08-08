@@ -99,6 +99,11 @@ public protocol MoyaProvidable: TargetType {
     static var provider: MoyaProvider<Self> { get }
 }
 
+extension MoyaIORequestable {
+  public static var provider: MoyaProvider<Self> {
+    return MoyaProvider<Self>(plugins: [])
+  }
+}
 
 public struct MoyaSpec {
   public var method: Moya.Method
