@@ -16,7 +16,7 @@ A **simple** way to define and execute your web API with IORequestable in Swift.
 
 IORequestable provides a clean and easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
 
-API = Endable Input + Decodable Output + URL and other options
+API = Encodable Input + Decodable Output + URL and other options
 
 ## Usage
 
@@ -58,7 +58,7 @@ struct GetUserInfo: SomeIORequestable {
 
 That's it! You have just created an executable API. Let's run it and give it a try.
 
-### Execute an API
+### Execute an API request
 
 ```swift
   GetUserInfo { $0.init(userID: 5, language: "en_us") }
@@ -70,6 +70,23 @@ That's it! You have just created an executable API. Let's run it and give it a t
         // ...
       }
     }
+```
+
+### Other tips
+
+To use an existing model as Input or Output, use typealias.
+
+```swift
+struct GetUserInfo: SomeIORequestable {
+  var spec = ...
+
+  struct Input: Encodable {
+    ...
+  }
+
+  typealias Output = Person // Use Person as Output,
+                            // where Person conforms to Decodable.  
+}
 ```
 
 ## Sample Project

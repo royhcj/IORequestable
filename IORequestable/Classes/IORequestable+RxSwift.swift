@@ -21,7 +21,7 @@ extension Reactive where Base: IORequestable {
       return Disposables.create()
     }
     .catchError({ error -> Observable<Result<Base.Output, Base.ErrorT>> in
-      let result = Result<Base.Output, Base.ErrorT>.init(error: error as! Base.ErrorT)
+      let result = Result<Base.Output, Base.ErrorT>.init(error: Base.ErrorT.ior_customizedError(error: error))
       return Observable.just(result)
     })
   }
@@ -57,7 +57,7 @@ extension RxIORequestable {
       return Disposables.create()
     }
     .catchError({ (error) -> Observable<Result<Output, ErrorT>> in
-      let result = Result<Output, ErrorT>.init(error: error as! ErrorT)
+      let result = Result<Output, ErrorT>.init(error: ErrorT.ior_customizedError(error: error))
       return Observable<Result<Output, ErrorT>>.just(result)
     })
   }

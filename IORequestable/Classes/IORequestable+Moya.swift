@@ -64,6 +64,10 @@ extension MoyaIORequestable {
     return nil
   }
   
+  public var sampleData: Data {
+    return Data()
+  }
+  
   public func execute(completion: @escaping ((Result<Output, MoyaError>) -> Void)) {
     Self.provider.request(self) { (result) in
       switch result {
@@ -105,6 +109,7 @@ extension MoyaIORequestable {
   }
 }
 
+
 public struct MoyaSpec {
   public var method: Moya.Method
   public var path: String
@@ -118,5 +123,16 @@ public struct MoyaSpec {
     self.method = method
     self.path = path
     self.inputEncoding = inputEncoding
+  }
+}
+
+
+extension MoyaError: CustomizableError {
+  public static func ior_customizedError(error: Error) -> MoyaError {
+    if error is MoyaError {
+      return error as! MoyaError
+    } else {
+      return .underlying(error, nil)
+    }
   }
 }
