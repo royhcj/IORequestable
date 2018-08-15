@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-  ORequestable provides a clean and easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
+  IORequestable provides a clean and easy way to create web APIs by encapsulating codable input and output types together with URL request specifications based on an abstraction layer of Moya.
                        DESC
 
   s.homepage         = 'https://github.com/royhcj/IORequestable'
@@ -33,6 +33,23 @@ Pod::Spec.new do |s|
 
   s.source_files = 'IORequestable/Classes/**/*'
   
+  s.default_subspec = "Core"
+  
+  s.subspec "Core" do |ss|
+    ss.source_files = "Sources/Core/"
+    ss.dependency 'Alamofire'
+    ss.dependency 'Result'
+    ss.dependency 'Moya'
+    ss.dependency 'SwiftyJSON'
+  end
+  
+  s.subspec "RxSwift" do |ss|
+    ss.source_files = "Sources/RxSwift/"
+    ss.dependency 'IORequestable/Core'
+    ss.dependency 'RxSwift'
+    ss.dependency 'RxCocoa'
+  end
+  
   # s.resource_bundles = {
   #   'IORequestable' => ['IORequestable/Assets/*.png']
   # }
@@ -40,10 +57,11 @@ Pod::Spec.new do |s|
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
-  s.dependency 'Alamofire'
-  s.dependency 'Result'
-  s.dependency 'Moya'
-  s.dependency 'SwiftyJSON'
-  s.dependency 'RxSwift'
-  s.dependency 'RxCocoa'
+  
+  # s.dependency 'Alamofire'
+  # s.dependency 'Result'
+  # s.dependency 'Moya'
+  # s.dependency 'SwiftyJSON'
+  # s.dependency 'RxSwift'
+  # s.dependency 'RxCocoa'
 end

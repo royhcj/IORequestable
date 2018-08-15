@@ -72,7 +72,7 @@ That's it! You have just created an executable API. Let's run it and give it a t
     }
 ```
 
-### Other tips
+## Other tips
 
 To use an existing model as Input or Output, use typealias.
 
