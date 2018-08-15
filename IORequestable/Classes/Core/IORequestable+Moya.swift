@@ -10,7 +10,8 @@ import Moya
 import Result
 import SwiftyJSON
 
-public protocol MoyaIORequestable: IORequestable, MoyaProvidable {
+public protocol MoyaIORequestable: IORequestable,
+                                   MoyaProvidable {
   typealias Spec = MoyaSpec
   
   var spec: Spec { get set }
@@ -19,7 +20,7 @@ public protocol MoyaIORequestable: IORequestable, MoyaProvidable {
 extension MoyaIORequestable {
   
   public var path: String {
-    return spec.path
+    return resolvePlaceholdedPath(spec.path)
   }
   
   public var method: Moya.Method {
