@@ -37,10 +37,8 @@ extension MoyaIORequestable {
   }
   
   public var task: Task {
-    
-    let inputEncoding = spec.inputEncoding ?? InputEncoding.plain
-    
-    switch inputEncoding {
+
+    switch spec.inputEncoding {
     case .plain:
       return Task.requestPlain
     case .jsonBody:
@@ -74,8 +72,19 @@ extension MoyaIORequestable {
       switch result {
       case .success(let response):
         do {
-          let output = try JSONDecoder().decode(Output.self, from: response.data)
-          completion(Result<Output, MoyaError>.init(value: output))
+            var output: Output
+            switch self.spec.outputDecoding {
+            case .rawData:
+                guard let data = response.data as? Output
+                    else {
+                        let context = DecodingError.Context(codingPath: [], debugDescription: "[IORequestable] Error: Failed decoding response data: Output type must be Data.")
+                        throw DecodingError.dataCorrupted(context)
+                }
+                output = data
+            case .json:
+                output = try JSONDecoder().decode(Output.self, from: response.data)
+            }
+            completion(Result<Output, MoyaError>.init(value: output))
         } catch(let error) {
           completion(Result<Output, MoyaError>.init(error: MoyaError.encodableMapping(error)))
         }
@@ -114,16 +123,23 @@ extension MoyaIORequestable {
 public struct MoyaSpec {
   public var method: Moya.Method
   public var path: String
-  public var inputEncoding: InputEncoding?
+  public var inputEncoding: InputEncoding = .urlParameter
+  public var outputDecoding: OutputDecoding = .json
   
   public var input: Any?
   
   public init(_ method: Moya.Method,
               _ path: String,
-              inputEncoding: InputEncoding? = nil) {
+              inputEncoding: InputEncoding? = nil,
+              outputDecoding: OutputDecoding? = nil) {
     self.method = method
     self.path = path
-    self.inputEncoding = inputEncoding
+    if let inputEncoding = inputEncoding {
+        self.inputEncoding = inputEncoding
+    }
+    if let outputDecoding = outputDecoding {
+        self.outputDecoding = outputDecoding
+    }
   }
 }
 

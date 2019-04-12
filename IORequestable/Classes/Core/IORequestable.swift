@@ -16,7 +16,7 @@ public protocol IORequestable {
   var input: Input? { get set }
   
   init()
-  init(input: Input)
+  init(_ input: Input)
   init(input: ((Input.Type) -> Input))
   
   func execute(completion: @escaping ((Result<Output, ErrorT>) -> Void))
@@ -24,7 +24,7 @@ public protocol IORequestable {
 }
 
 extension IORequestable {
-  public init(input: Input) {
+  public init(_ input: Input) {
     self.init()
     self.input = input
   }
