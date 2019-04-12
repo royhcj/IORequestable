@@ -50,7 +50,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  IORequestable: d3e3097aa3547ad606d523a89d6af0c06cba9bc9
+  IORequestable: b439f754dccb4e69d6207257a8082f314d8ce341
   Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
   Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
   Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
