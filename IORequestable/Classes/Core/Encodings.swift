@@ -20,3 +20,11 @@ public enum InputEncoding {
   
   // TODO: Support more encodings.
 }
+
+public enum OutputDecoding {
+    /// Plain data. No decoding
+    case rawData
+    
+    /// Decode json output
+    case json
+}

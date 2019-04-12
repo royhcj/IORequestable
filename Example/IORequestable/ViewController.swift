@@ -23,9 +23,9 @@ class ViewController: UIViewController {
   
   @IBAction func clickedITunesSearchItems(_ sender: Any) {
     
-    iTunesAPI.SearchItems { $0.init(
+    iTunesAPI.SearchItems(.init(
         term: "Swift", limit: 10, lang: "en_us"
-      ) }.execute() { result in
+      )).execute() { result in
         var resultText = ""
 
         switch result {
@@ -44,9 +44,9 @@ class ViewController: UIViewController {
   }
   
   @IBAction func clickedITunesSearchItemRx(_ sender: Any) {
-    iTunesAPI.SearchItems { $0.init(
-      term: "Swift", limit: 10, lang: "en_us"
-      ) }.rx_execute()
+    iTunesAPI.SearchItems(.init(
+        term: "Swift", limit: 10, lang: "en_us"
+      )).rx_execute()
       .subscribe(onNext: { result in
         var resultText = "Rx version: \n"
         
