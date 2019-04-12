@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'IORequestable_Example' do
   pod 'IORequestable', :path => '../'
+  pod 'IORequestable/RxSwift', :path => '../'
 
   target 'IORequestable_Tests' do
     inherit! :search_paths
