@@ -340,7 +340,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IORequestable_Example/Pods-IORequestable_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-IORequestable_Example/Pods-IORequestable_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/IORequestable/IORequestable.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
@@ -363,7 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IORequestable_Example/Pods-IORequestable_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IORequestable_Example/Pods-IORequestable_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F7AE28F5520F2E02DA218D89 /* [CP] Embed Pods Frameworks */ = {
@@ -372,7 +372,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-IORequestable_Tests/Pods-IORequestable_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-IORequestable_Tests/Pods-IORequestable_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
@@ -383,7 +383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IORequestable_Tests/Pods-IORequestable_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IORequestable_Tests/Pods-IORequestable_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
