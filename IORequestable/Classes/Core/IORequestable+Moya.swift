@@ -42,10 +42,19 @@ extension MoyaIORequestable {
     case .plain:
       return Task.requestPlain
     case .jsonBody:
-      return Task.requestJSONEncodable(input)
+      let encoder = JSONEncoder()
+      if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
+        encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
+      }
+      return Task.requestCustomJSONEncodable(input, encoder: encoder)
     case .urlParameter:
       do {
-        let data = try JSONEncoder().encode(input)
+        let encoder = JSONEncoder()
+        if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
+          encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
+        }
+
+        let data = try encoder.encode(input)
         if let parameters = try JSONSerialization.jsonObject(with: data,
                                     options: .allowFragments) as? [String: Any] {
           return Task.requestParameters(parameters: parameters,
@@ -82,7 +91,12 @@ extension MoyaIORequestable {
                 }
                 output = data
             case .json:
-                output = try JSONDecoder().decode(Output.self, from: response.data)
+                let decoder = JSONDecoder()
+                if let strategy = Output.self as? JsonDecodableKeyStrategic.Type {
+                  decoder.keyDecodingStrategy = strategy.decodableKeyStrategy
+                }
+
+                output = try decoder.decode(Output.self, from: response.data)
             }
             completion(Result<Output, MoyaError>.init(value: output))
         } catch(let error) {
