@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'IORequestable'
-  s.version          = '0.1.3'
+  s.version          = '0.1.5'
   s.summary          = 'A simple way to define and execute your web API with IORequestable in Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -44,8 +44,8 @@ Pod::Spec.new do |s|
   s.subspec "RxSwift" do |ss|
     ss.source_files = 'IORequestable/Classes/RxSwift/**/*'
     ss.dependency 'IORequestable/Core'
-    ss.dependency 'RxSwift', '~> 4.4.0'
-    ss.dependency 'RxCocoa', '~> 4.4.0'
+    ss.dependency 'RxSwift', '~> 5.0'
+    ss.dependency 'RxCocoa', '~> 5.0'
   end
   
   # s.resource_bundles = {
