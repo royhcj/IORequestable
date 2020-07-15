@@ -8,7 +8,6 @@
 import Foundation
 import Moya
 import Result
-import SwiftyJSON
 
 public protocol MoyaIORequestable: IORequestable,
                                    MoyaProvidable {
