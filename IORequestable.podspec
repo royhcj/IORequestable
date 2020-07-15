@@ -44,8 +44,8 @@ Pod::Spec.new do |s|
   s.subspec "RxSwift" do |ss|
     ss.source_files = 'IORequestable/Classes/RxSwift/**/*'
     ss.dependency 'IORequestable/Core'
-    ss.dependency 'RxSwift', '~> 4.4.0'
-    ss.dependency 'RxCocoa', '~> 4.4.0'
+    ss.dependency 'RxSwift', '~> 5.0'
+    ss.dependency 'RxCocoa', '~> 5.0'
   end
   
   # s.resource_bundles = {
