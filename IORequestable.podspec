@@ -38,7 +38,6 @@ Pod::Spec.new do |s|
     ss.dependency 'Alamofire', '~> 4.8.0'
     ss.dependency 'Result'
     ss.dependency 'Moya', '~> 12.0.0'
-    ss.dependency 'SwiftyJSON', '~> 4.2.0'
   end
   
   s.subspec "RxSwift" do |ss|
