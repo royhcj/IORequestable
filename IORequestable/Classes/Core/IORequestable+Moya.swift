@@ -46,7 +46,48 @@ extension MoyaIORequestable {
         encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
       }
       return Task.requestCustomJSONEncodable(input, encoder: encoder)
-    case .urlParameter:
+    case .multipartFormDataBody:
+      let encoder = JSONEncoder()
+      if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
+        encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
+      }
+      
+      do {
+        let data = try encoder.encode(input)
+        if let parameters = try JSONSerialization.jsonObject(with: data,
+                                                             options: .allowFragments) as? [String: Any] {
+          var multipartData = [MultipartFormData]()
+          for (key, value) in parameters {
+            let stringValue = String(describing: value)
+            guard let valueData = stringValue.data(using: .utf8) else { continue }
+            let formData = MultipartFormData(provider: .data(valueData), name: key)
+            multipartData.append(formData)
+          }
+          
+          return .uploadMultipart(multipartData)
+        }
+      } catch {
+        print(error)
+      }
+
+    case .urlEncodedBody: // TODO: untested
+      do {
+        let encoder = JSONEncoder()
+        if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
+          encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
+        }
+
+        let data = try encoder.encode(input)
+        
+        if let parameters = try JSONSerialization.jsonObject(with: data,
+                                    options: .allowFragments) as? [String: Any] {
+          return Task.requestCompositeParameters(bodyParameters: parameters, bodyEncoding: URLEncoding.default, urlParameters: [:])
+        }
+      } catch(let error) {
+        print(error)
+      }
+      
+    case .urlEncodedQuery:
       do {
         let encoder = JSONEncoder()
         if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
@@ -136,7 +177,7 @@ extension MoyaIORequestable {
 public struct MoyaSpec {
   public var method: Moya.Method
   public var path: String
-  public var inputEncoding: InputEncoding = .urlParameter
+  public var inputEncoding: InputEncoding = .urlEncodedQuery
   public var outputDecoding: OutputDecoding = .json
   
   public var input: Any?
