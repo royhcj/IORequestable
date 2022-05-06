@@ -22,10 +22,11 @@ extension IORequestablePlaceholdedPath {
       return path
     }
     
-    let data = try! JSONEncoder().encode(input)
-    guard let parameters = try! JSONSerialization.jsonObject(
-      with: data, options: .allowFragments
-      ) as? [String: Any]
+    
+    guard let data = try? JSONPathEncoder().encode(input),
+          let parameters = (try? JSONSerialization.jsonObject(
+                              with: data, options: .allowFragments
+                            )) as? [String: Any]
       else {
         print("Error: Failed encoding Input")
         return path
