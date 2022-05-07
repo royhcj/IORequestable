@@ -20,4 +20,10 @@ extension iTunesIORequestable {
   var baseURL: URL {
     return URL(string: "https://itunes.apple.com")!
   }
+  
+  public static var provider: MoyaProvider<Self> {
+      let logger = BasicNetworkLoggerPlugin(verbose: true, cURL: true)
+      
+      return MoyaProvider<Self>(plugins: [logger])
+  }
 }
