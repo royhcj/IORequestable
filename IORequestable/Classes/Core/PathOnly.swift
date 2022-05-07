@@ -7,15 +7,6 @@
 
 import Foundation
 
-internal class JSONPathEncoder: JSONEncoder {
-  static let pathOnlyKey: CodingUserInfoKey = .init(rawValue: "IORequestablePathOnly")!
-  
-  override init() {
-    super.init()
-    userInfo[JSONPathEncoder.pathOnlyKey] = true
-  }
-}
-
 @propertyWrapper
 public struct PathOnly<T: Codable>: Codable {
   public var wrappedValue: T
@@ -29,7 +20,7 @@ public struct PathOnly<T: Codable>: Codable {
     if (encoder.userInfo[JSONPathEncoder.pathOnlyKey] as? Bool) == true {
       try container.encode(wrappedValue)
     } else {
-      // do nothing
+      try container.encodeNil()
     }
   }
   
@@ -40,5 +31,15 @@ extension KeyedEncodingContainer {
                         forKey key: Self.Key) throws {
     // Do nothing
     print("unimplemented")
+  }
+}
+
+
+internal class JSONPathEncoder: JSONEncoder {
+  static let pathOnlyKey: CodingUserInfoKey = .init(rawValue: "IORequestablePathOnly")!
+  
+  override init() {
+    super.init()
+    userInfo[JSONPathEncoder.pathOnlyKey] = true
   }
 }

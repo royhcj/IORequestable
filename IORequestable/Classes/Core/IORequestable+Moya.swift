@@ -41,13 +41,13 @@ extension MoyaIORequestable {
     case .plain:
       return Task.requestPlain
     case .jsonBody:
-      let encoder = JSONEncoder()
+      let encoder = JSONContentEncoder()
       if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
         encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
       }
       return Task.requestCustomJSONEncodable(input, encoder: encoder)
     case .multipartFormDataBody:
-      let encoder = JSONEncoder()
+      let encoder = JSONContentEncoder()
       if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
         encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
       }
@@ -70,9 +70,9 @@ extension MoyaIORequestable {
         print(error)
       }
 
-    case .urlEncodedBody: // TODO: untested
+    case .urlEncodedBody:
       do {
-        let encoder = JSONEncoder()
+        let encoder = JSONContentEncoder()
         if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
           encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
         }
@@ -89,7 +89,7 @@ extension MoyaIORequestable {
       
     case .urlEncodedQuery:
       do {
-        let encoder = JSONEncoder()
+        let encoder = JSONContentEncoder()
         if let strategy = Input.self as? JsonEncodableKeyStrategic.Type {
           encoder.keyEncodingStrategy = strategy.encodableKeyStrategy
         }
