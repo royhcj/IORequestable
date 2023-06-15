@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         switch result {
         case .success(let output):
           output.results?.forEach { item in
-            resultText += "\(item.kind): \(item.trackName ?? "") (by \(item.artistName ?? "?"))\n"
+            resultText += "\(item.kind ?? "Undefined Kind"): \(item.trackName ?? "") (by \(item.artistName ?? "?"))\n"
           }
         case .failure(let error):
           resultText = error.localizedDescription
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
         switch result {
         case .success(let output):
           output.results?.forEach { item in
-            resultText += "\(item.kind): \(item.trackName ?? "") (by \(item.artistName ?? "?"))\n"
+            resultText += "\(item.kind ?? "Undefined Kind"): \(item.trackName ?? "") (by \(item.artistName ?? "?"))\n"
           }
         case .failure(let error):
           resultText = error.localizedDescription

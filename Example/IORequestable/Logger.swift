@@ -57,7 +57,7 @@ public final class BasicNetworkLoggerPlugin: PluginType {
         outputItems(logNetworkRequest(request.request as URLRequest?, cURL: cURLString))
     }
 
-    public func didReceive(_ result: RResult<Moya.Response, MoyaError>, target: TargetType) {
+    public func didReceive(_ result: Result<Moya.Response, MoyaError>, target: TargetType) {
         if case .success(let response) = result {
             outputItems(logNetworkResponse(response, data: response.data, target: target))
         } else {
@@ -121,7 +121,7 @@ fileprivate extension BasicNetworkLoggerPlugin {
     }
 }
 
-fileprivate extension Request {
+fileprivate extension Alamofire.Request {
     func getCurlRepresentation() -> String {
         var components = ["$ curl -v"]
 
@@ -135,7 +135,10 @@ fileprivate extension Request {
         if let httpMethod = request.httpMethod, httpMethod != "GET" {
             components.append("-X \(httpMethod)")
         }
+        
+        var headers: [AnyHashable: Any] = [:]
 
+        /* Ignore cookies since session is no longer accessible in Alamofire 5.x.x
         if session.configuration.httpShouldSetCookies {
             if
                 let cookieStorage = session.configuration.httpCookieStorage,
@@ -151,10 +154,9 @@ fileprivate extension Request {
             }
         }
 
-        var headers: [AnyHashable: Any] = [:]
-
         session.configuration.httpAdditionalHeaders?.filter {  $0.0 != AnyHashable("Cookie") }
                                                     .forEach { headers[$0.0] = $0.1 }
+         */
 
         request.allHTTPHeaderFields?.filter { $0.0 != "Cookie" }
                                     .forEach { headers[$0.0] = $0.1 }
