@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol CustomizableError: Swift.Error {
-  static func ior_customizedError(error: Swift.Error) -> Self
+public protocol CustomizableError: Error {
+  static func ior_customizedError(error: Error) -> Self
 }

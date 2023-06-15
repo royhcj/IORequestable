@@ -1,44 +1,33 @@
 PODS:
-  - Alamofire (4.8.2)
-  - IORequestable (0.1.9):
-    - IORequestable/Core (= 0.1.9)
-  - IORequestable/Core (0.1.9):
-    - Alamofire (~> 4.8.0)
-    - Moya (~> 12.0.0)
-    - Result
-  - IORequestable/RxSwift (0.1.9):
+  - Alamofire (5.6.4)
+  - IORequestable (0.1.11):
+    - IORequestable/Core (= 0.1.11)
+  - IORequestable/Core (0.1.11):
+    - Alamofire (~> 5.0)
+    - Moya (~> 15.0.0)
+  - IORequestable/RxSwift (0.1.11):
     - IORequestable/Core
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
-  - Moya/Core (12.0.1):
-    - Alamofire (~> 4.1)
-    - Result (~> 4.0)
-  - Nimble (8.0.1)
-  - Quick (2.0.0)
-  - Result (4.1.0)
-  - RxCocoa (5.1.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.1)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
 
 DEPENDENCIES:
   - IORequestable (from `../`)
   - IORequestable/RxSwift (from `../`)
-  - Nimble
-  - Quick
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Moya
-    - Nimble
-    - Quick
-    - Result
-  trunk:
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -48,16 +37,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  IORequestable: fedf857a270c4d574c03e07fb56c0c37088da6db
-  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
-  Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
-  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
-  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  IORequestable: bf9263832c57418a3b604d35c60009a001a9e211
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
 
-PODFILE CHECKSUM: 87229bce6c4651a8bf7958ebd232f2aa8e409fca
+PODFILE CHECKSUM: 5450ded6a0519bb4c5fc9656cd12bcc83e57efcb
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

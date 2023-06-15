@@ -7,7 +7,6 @@
 
 import Foundation
 import Moya
-import Result
 
 public protocol MoyaIORequestable: IORequestable,
                                    MoyaProvidable {
@@ -138,12 +137,12 @@ extension MoyaIORequestable {
 
                 output = try decoder.decode(Output.self, from: response.data)
             }
-            completion(Result<Output, MoyaError>.init(value: output))
+            completion(.success(output))
         } catch(let error) {
-          completion(Result<Output, MoyaError>.init(error: MoyaError.encodableMapping(error)))
+            completion(.failure(MoyaError.encodableMapping(error)))
         }
       case .failure(let error):
-        completion(Result<Output, MoyaError>.init(error: error))
+          completion(.failure(error))
       }
     }
   }
