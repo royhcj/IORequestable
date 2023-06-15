@@ -28,8 +28,8 @@ class iTunesAPI {
       let results: [Item]?
       
       struct Item: Decodable {
-        let wrapperType: String
-        let kind: String
+        let wrapperType: String?
+        let kind: String?
         let trackName: String?
         let artistId: Int?
         let artistName: String?

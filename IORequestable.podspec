@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'IORequestable'
-  s.version          = '0.1.10'
+  s.version          = '0.1.11'
   s.summary          = 'A simple way to define and execute your web API with IORequestable in Swift.'
 
 # This description is used to generate tags and improve search results.
@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/royhcj/IORequestable.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
-  s.swift_version = '4.0'
+  s.ios.deployment_target = '11.0'
+  s.swift_version = '5.5'
 
   s.default_subspec = "Core"
   
